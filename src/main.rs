@@ -1,58 +1,63 @@
-use std::io::{self, Write};
-use std::io::stdin;
 use rand::seq::SliceRandom;
 use std::collections::HashSet;
+use std::io::stdin;
+use std::io::{self, Write};
+
 fn main() {
-    let words = vec!["snakes", "thanks", "granted", "awkward", "bagpipes", "banjo", "bungler", "croquet", "crypt"];
-    let states  = [r#"
+    let words = vec![
+        "snakes", "thanks", "granted", "awkward", "bagpipes", "banjo", "bungler", "croquet",
+        "crypt",
+    ];
+    let states = [
+        r#"
 |-----|
 |
 |
 |
 |_______
     "#,
-    r#"
+        r#"
 |-----|
 |     o
 |
 |
 |_______
     "#,
-    r#"
+        r#"
 |-----|
 |     o
 |     |
 |
 |_______
     "#,
-    r#"
+        r#"
 |-----|
 |     o
 |     |
 |    /
 |_______
     "#,
-    r#"
+        r#"
 |-----|
 |     o
 |     |
 |    / \
 |_______
     "#,
-    r#"
+        r#"
 |-----|
 |     o
 |    /|
 |    / \
 |_______
     "#,
-    r#"
+        r#"
 |-----|
 |     o
 |    /|\
 |    / \
 |_______
-    "#
+    "#,
     ];
     let current_word = words.choose(&mut rand::thread_rng()).unwrap();
     let mut states_ind = 0;
